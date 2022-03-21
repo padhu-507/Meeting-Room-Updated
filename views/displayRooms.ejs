@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Booked Rooms</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../public/assets/card.css" type="text/css" />
+</head>
+
+<header class="logo1">
+    <div class="logo">
+        <a href="index">
+            <p id="text">Meeting Room Booking</p>
+        </a>
+    </div>
+</header>
+
+<body>
+    <% if(userData.length!=0){ var i=1; userData.forEach(function(data){ %>
+        <div class="all-cards">
+            <article>
+                <div>
+                    <h3><strong>
+                            <%=data.roomname %> Room
+                        </strong></h3>
+                    <p>
+                        <%=data.startdate%>
+                            <%=data.starttime%> - <%=data.endtime%>
+                    </p>
+
+                </div>
+                <p>
+                    <a href="delete/<%=data.id%>" id="button" class="btn btn-sm btn-danger">Delete</a>
+                </p>
+            </article>
+            <% i++; }) %>
+                <% } %>
+        </div>
+</body>
+
+</html>

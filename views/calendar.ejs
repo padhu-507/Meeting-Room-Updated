@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <title>Calendar</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.2/main.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.2/main.js"></script>
+  <link rel="stylesheet" href="/public/assets/forms.css" type="text/css" />
+</head>
+
+<header class="logo1">
+  <div class="logo">
+    <a href="index">
+      <p id="text">Meeting Room Booking</p>
+    </a>
+  </div>
+</header>
+
+<body>
+  <div id="calendar"></div>
+    <% if (calendarEvents) { %>
+      <script>
+        var event = <%- JSON.stringify(calendarEvents) %>
+        document.addEventListener("DOMContentLoaded", function () {
+          var calendarEl = document.getElementById("calendar");
+
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone: "UTC",
+            initialView: "resourceTimeGridFourDay",
+            headerToolbar: {
+              left: "prev,next",
+              center: "title",
+              right: "resourceTimeGridDay,resourceTimeGridFourDay",
+            },
+            views: {
+              resourceTimeGridFourDay: {
+                type: "resourceTimeGrid",
+                duration: { days: 3 },
+                buttonText: "3 days",
+              },
+            },
+            resources: [
+              { id: "a", title: "Cave" },
+              { id: "b", title: "Tower" },
+              { id: "c", title: "Mansion" },
+            ],
+
+            events: function (info, successCallback, failureCallback) {
+              let eventArr = event
+              successCallback(eventArr);
+            }
+          });
+          calendar.render();
+        });
+      </script>
+      <% } %>
+</body>
+
+</html>
