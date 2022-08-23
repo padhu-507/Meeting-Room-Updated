@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signin</title>
+    <script src="../js/signin.js"></script>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/forms.css">
+ 
+</head>
+
+<header class="logo1">
+    <div class="logo">
+       <a href="index.html">
+           <p id="text">Meeting Room Booking</p>
+      </a>
+   </div> 
+</header>
+
+<div id="msg">Successfully Logged In!</div>
+
+<body>
+    <div id="login-form-wrap">
+        <h2>Login</h2>
+
+        <form name="myForm" id="myForm" action="javascript:loginData();">
+            <p>
+                <i class="bi bi-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Email Address" autoComplete="on" required>
+                <i class="validation"></i>
+            </p>
+            <p>
+                <i class="fa fa-eye-slash" id="pass-status" onClick="viewPassword()" aria-hidden="true"></i>
+                <i class="bi bi-key"></i>
+                <input type="password" id="password" name="password" placeholder="password" pattern="[A-Za-z0-9]{8,16}"
+                    title="password must be in between 8 & 16 should contain characters and digits" autoComplete="on"
+                    minlength=8 required>
+                <i class="validation"></i>
+            </p>
+            <p>
+                <input type="submit" id="signin" value="Submit">
+            </p>
+        </form>
+        <div id="create-account-wrap">
+            <p id="loginPage"><b>Forgot Password?</b> <a href="forgotPassword.html">Click here to reset</a></p>
+        </div>
+
+    </div>
+</body>
+
+</html>

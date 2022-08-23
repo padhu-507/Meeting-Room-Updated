@@ -246,14 +246,14 @@ input[type="endtime"]:focus:invalid {
   border-color: #cc1e2b;
 }
 
-input[type="text"]:valid~.validation,
-input[type="password"]:valid~.validation,
-input[type="email"]:valid~.validation,
-input[type="number"]:valid~.validation,
-input[type="startdate"]:valid~.validation,
-input[type="enddate"]:valid~.validation,
-input[type="starttime"]:valid~.validation,
-input[type="endtime"]:valid~.validation {
+input[type="text"]:valid ~ .validation,
+input[type="password"]:valid ~ .validation,
+input[type="email"]:valid ~ .validation,
+input[type="number"]:valid ~ .validation,
+input[type="startdate"]:valid ~ .validation,
+input[type="enddate"]:valid ~ .validation,
+input[type="starttime"]:valid ~ .validation,
+input[type="endtime"]:valid ~ .validation {
   top: 30px;
   left: 14px;
   width: 20px;
@@ -344,8 +344,8 @@ h2 {
 
 #clickHere {
   font-size: 16px;
-  color: #E4405F;
-  font-family: 'Times New Roman', Times, serif;
+  color: #e4405f;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-decoration: underline;
   padding-right: 40px;
@@ -353,8 +353,8 @@ h2 {
 
 #clickHere1 {
   font-size: 16px;
-  color: #E4405F;
-  font-family: 'Times New Roman', Times, serif;
+  color: #e4405f;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-decoration: underline;
   padding-left: 50px;
@@ -362,8 +362,8 @@ h2 {
 
 #clickHere3 {
   font-size: 16px;
-  color: #E4405F;
-  font-family: 'Times New Roman', Times, serif;
+  color: #e4405f;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-decoration: underline;
   font-size: 20px;

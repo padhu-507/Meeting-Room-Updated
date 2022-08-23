@@ -1,12 +1,12 @@
-var con = require('../connection');
-var nodemailer = require('nodemailer');
-var randtoken = require('rand-token');
-var bcrypt = require('bcrypt');
-var moment = require('moment');
-const { defaultOccurance, getStatus } = require('../utils/occuranceUtil');
+var con = require("../connection");
+var nodemailer = require("nodemailer");
+var randtoken = require("rand-token");
+var bcrypt = require("bcrypt");
+var moment = require("moment");
+const { defaultOccurance, getStatus } = require("../utils/occuranceUtil");
 
 const getSignUp = function (req, res, next) {
-  res.render('index', { success: '', error: '' });
+  res.render("index", { success: "", error: "" });
 };
 
 const postSignUp = function (req, res) {
@@ -26,12 +26,16 @@ const postSignUp = function (req, res) {
       } else {
         con.query(
           "Insert into register(username,email,password,phone,occupancy) values('" +
-          username +
-          "','" +
-          email +
-          "','" +
-          password +
-          "','" + phone + "','" + defaultOccurance() + "' )",
+            username +
+            "','" +
+            email +
+            "','" +
+            password +
+            "','" +
+            phone +
+            "','" +
+            defaultOccurance() +
+            "' )",
           function (err, insert) {
             if (err) {
               throw err;
@@ -48,7 +52,7 @@ const postSignUp = function (req, res) {
 };
 
 const getSignIn = function (req, res) {
-  res.render('signin', { success: '', error: '' });
+  res.render("signin", { success: "", error: "" });
 };
 
 const postSignIn = function (req, res) {
@@ -66,11 +70,10 @@ const postSignIn = function (req, res) {
   });
 };
 
-
 const forgotPassword = function (req, res, next) {
-  res.render('forgotPassword', {
-    title: 'Forget Password Page',
-    success: '',
+  res.render("forgotPassword", {
+    title: "Forget Password Page",
+    success: "",
   });
 };
 
@@ -83,7 +86,7 @@ const resetPasswordEmail = function (req, res, next) {
       if (result[0].email.length > 0) {
         var token = randtoken.generate(20);
         var sent = sendEmail(email, token);
-        if (sent != '0') {
+        if (sent != "0") {
           var data = {
             token: token,
           };
@@ -94,18 +97,18 @@ const resetPasswordEmail = function (req, res, next) {
               if (err) throw err;
             }
           );
-          res.render('signin', {
+          res.render("signin", {
             success:
-              'The reset password link has been sent to your email address!',
+              "The reset password link has been sent to your email address!",
           });
         } else {
-          res.render('signin', {
-            success: 'Something went wrong. Please try again!',
+          res.render("signin", {
+            success: "Something went wrong. Please try again!",
           });
         }
       } else {
-        res.render('signin', {
-          success: 'The Email is not registered with us!',
+        res.render("signin", {
+          success: "The Email is not registered with us!",
         });
       }
     }
@@ -113,9 +116,9 @@ const resetPasswordEmail = function (req, res, next) {
 };
 
 const getUpdatePassword = function (req, res, next) {
-  res.render('updatePassword', {
-    title: 'Reset Password Page',
-    success: '',
+  res.render("updatePassword", {
+    title: "Reset Password Page",
+    success: "",
     token: req.query.token,
   });
 };
@@ -132,7 +135,7 @@ const postUpdatePassword = function (req, res, next) {
         bcrypt.genSalt(saltRounds, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
             var data = {
-              password
+              password,
             };
             con.query(
               'UPDATE register SET ? WHERE email ="' + result[0].email + '"',
@@ -143,9 +146,9 @@ const postUpdatePassword = function (req, res, next) {
             );
           });
         });
-        res.render('signin', { success: 'Password updated ! Now Login !' });
+        res.render("signin", { success: "Password updated ! Now Login !" });
       } else {
-        res.render('signin', { success: 'Invalid link ! please try again !' });
+        res.render("signin", { success: "Invalid link ! please try again !" });
       }
     }
   );
@@ -156,14 +159,14 @@ const fetchUserStatus = function (req, res, next) {
 
   const startdateTime = moment(
     `${startdate} ${starttime}`,
-    'YYYY-MM-DD HH:mm:ss'
+    "YYYY-MM-DD HH:mm:ss"
   ).format();
   const enddateTime = moment(
     `${enddate} ${endtime}`,
-    'YYYY-MM-DD HH:mm:ss'
+    "YYYY-MM-DD HH:mm:ss"
   ).format();
 
-  var sql = 'SELECT * FROM register WHERE email =?';
+  var sql = "SELECT * FROM register WHERE email =?";
   con.query(sql, [email], function (err, data, fields) {
     if (data.length > 0) {
       const status = getStatus(data[0].occupancy, startdateTime, enddateTime);
@@ -181,16 +184,16 @@ function sendEmail(email, token) {
   var email = email;
   var token = token;
   var mail = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-      user: 'm9705453621', // Your email id
-      pass: 'me&9705453621', // Your password
+      user: "m9705453621", // Your email id
+      pass: "me&9705453621", // Your password
     },
   });
   var mailOptions = {
-    from: 'donotreply@gmail.com',
+    from: "donotreply@gmail.com",
     to: email,
-    subject: 'Reset Password Link',
+    subject: "Reset Password Link",
     html:
       '<p>You requested for reset password, kindly use this <a href="http://localhost:5000/updatePassword?token=' +
       token +

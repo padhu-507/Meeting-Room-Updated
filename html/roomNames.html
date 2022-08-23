@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Booking Page</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/forms.css" />
+</head>
+
+<header class="logo1">
+  <div class="logo">
+    <a href="index.html">
+      <p id="text">Meeting Room Booking</p>
+    </a>
+    <li>
+      <a href="index.html">Logout</a>
+    </li>
+  </div>
+</header>
+
+<div id="msg">Meeting Booked Successfully!</div>
+
+<body>
+  <div id="login-form-wrap">
+    <h2>Room Booking</h2>
+    <form name="myForm" id="myForm" action="/rooms" method="post">
+      <p>
+        <i class="bi bi-building"></i>
+        <!-- <input type="text" id="room" name="roomname" placeholder="Room Name" /><i class="validation"></i> -->
+
+        <select name="roomname" id="room"  style="width:100%;height:60px;padding-left: 40px;">
+
+          <option value="Cave">Cave</option>
+          <option value="Tower">Tower</option>
+          <option value="Mansion">Mansion</option>
+        </select>
+      </p>
+      <p>
+        <i class="bi bi-people"></i>
+        <input type="text" id="persons" name="capacity" placeholder="capacity" autocomplete="off" required /><i
+          class="validation"></i>
+      </p>
+
+      <p>
+        <i class="bi bi-calendar-date"></i>
+        <input type="text" id="startdate" class="date_picker" onclick="datepick();this.type='date'"
+          onblur="this.type='text'" name="startdate" placeholder="Start Date" required /><i class="validation"></i>
+      </p>
+      <script>
+        function datepick() {
+          var today = new Date();
+          var dd = String(today.getDate()).padStart(2, "0");
+          var mm = String(today.getMonth() + 1).padStart(2, "0");
+          var yyyy = today.getFullYear();
+          today = yyyy + "-" + mm + "-" + dd;
+          $(".date_picker").attr("min", today);
+        }
+      </script>
+
+      <p>
+        <i class="bi bi-calendar-date"></i>
+        <input type="text" id="enddate" name="enddate" class="date_picker" onclick="datepick();this.type='date'"
+          onblur="this.type='text'" placeholder="End Date" required /><i class="validation"></i>
+      </p>
+      <script>
+        function datepick() {
+          var today = new Date();
+          var dd = String(today.getDate()).padStart(2, "0");
+          var mm = String(today.getMonth() + 1).padStart(2, "0");
+
+          var yyyy = today.getFullYear();
+
+          today = yyyy + "-" + mm + "-" + dd;
+
+          $(".date_picker").attr("min", today);
+        }
+
+      </script>
+
+      <p>
+        <i class="bi bi-clock"></i>
+        <input type="text" id="starttime" name="starttime" class="timepicker" name="time" placeholder="Start Timing"
+          onclick="this.type=''" onblur="this.type='text'" autocomplete="off" required /><i class="validation"></i>
+      </p>
+
+      <script>
+        $(document).ready(function () {
+
+          $(".timepicker").timepicker({
+
+            timeFormat: "HH:mm",
+
+            minTime: new Date().toLocaleTimeString(),
+
+            interval: 15,
+
+            defaultTime: "",
+
+            dynamic: false,
+
+            dropdown: true,
+
+            scrollbar: true,
+
+          });
+
+        });
+      </script>
+
+      <p>
+        <i class="bi bi-clock"></i>
+        <input type="text" id="endtime" class="timepicker" name="endtime" placeholder="End Timing"
+          onclick="this.type=''" onblur="this.type='text'" autocomplete="off" required /><i class="validation"></i>
+      </p>
+      <script>
+        $(document).ready(function () {
+
+          $(".timepicker").timepicker({
+
+            timeFormat: "HH:mm",
+
+            minTime: new Date().toLocaleTimeString(),
+
+            interval: 15,
+
+            defaultTime: "",
+
+            dynamic: false,
+
+            dropdown: true,
+
+            scrollbar: true,
+
+          });
+
+        });
+      </script>
+
+      <p>
+        <input type="submit" id="booking" value="Confirm Booking" />
+      </p>
+  
+    </form>
+  </div>
+</body>
+
+</html>
